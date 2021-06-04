@@ -1,3 +1,3 @@
-# Example Subgraph
+# elyfi-subgraph
 
-An example to help you get started with The Graph. For more information see the docs on https://thegraph.com/docs/.
+The code of Elyfi v2 subgraph
