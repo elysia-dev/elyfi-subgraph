@@ -1,0 +1,124 @@
+type Reserve @entity {
+  id: ID! # Rserve asset address
+  lTokenInterestIndex: BigInt!
+  lastUpdateTimestamp: Int!
+  isPaused: Boolean!
+  isActivated: Boolean!
+  reserveHistories: [ReserveHistory]! @derivedFrom(field: "reserve")
+}
+
+type ReserveHistory @entity {
+  id: ID! # txHash
+  timestamp: Int!
+  reserve: Reserve!
+  lTokenInterestIndex: BigInt!
+  supplyAPR: BigInt!
+  borrowAPR: BigInt!
+  totalBorrow: BigInt!
+  toatlSupply: BigInt!
+}
+
+type LToken @entity {
+  id: ID! # LToken Contract Address
+  reserve: Reserve!
+  histories: LTokenHistory[]! @derivedFrom(field: "lToken")
+}
+
+type LTokenHistory @Entity {
+  id: ID! # TxHash
+  lToken: LToken!
+  amount: BigInt!
+  type: String! # Transfer, Mint, Burn
+  implicitBalance: BigInt!
+  timestamp: BigInt!
+}
+
+type LTokenUesrBalance @Entity {
+  id: ID! # User Address + LToken Address
+  lToken: LToken!
+  user: User!
+  balance: BigInt!
+}
+
+type DToken @entity {
+  id: ID! # DToken Contract Address
+  reserve: Reserve!
+  histories: DTokenHistory[]! @derivedFrom(field: "dToken")
+}
+
+type DTokenHistory @Entity {
+  id: ID! # TxHash
+  dToken: DToken!
+  amount: BigInt!
+  type: String! # Mint, Burn
+  implicitBalance: BigInt!
+  timestamp: BigInt!
+}
+
+type DTokenUesrBalance @Entity {
+  id: ID! # User Address + DToken Address
+  dToken: dToken!
+  user: User!
+  balance: BigInt!
+}
+
+type User @Entity {
+  id: ID! # Account address
+  lTokenBalances: LTokenUserBalance[]! @derivedFrom(field: "user")
+  dTokenBalances: DTokenUserBalance[]! @derivedFrom(field: "user")
+  managingAssetBondTokens: AssetBondToken[]! @derivedFrom(field: "collateralServiceProvider")
+  owningAssetBondTokens: AssetBondToken[]! @derivedFrom(field: "borrower")
+  signedAssetBondTokens: AssetBondToken[]! @derivedFrom(field: "signer")
+}
+
+type AssetBondToken @Entity {
+  id: ID! # unique TokenID
+  signer: User
+  borrower: User
+  collateralServiceProvider: User
+  principal: BigInt
+  debtCeiling: BigInt
+  couponRate: BigInt
+  interestRate: BigInt
+  overdueInterestRate: BigInt
+  loanStartTimestamp: BigInt
+  collateralizeTimestamp: BigInt
+  maturityTimestamp: BigInt
+  liquidationTimestamp: BigInt
+  ipfsHash: String
+  signerOpinionHash: String
+}
+
+type Invest @Entity {
+  id: ID! # Tx Hash
+  reserve: Reserve!
+  account: User!
+  amount: BigInt!
+}
+
+type Withdraw @Entity {
+  id: ID! # Tx Hash
+  reserve: Reserve!
+  account: User!
+  to: User!
+  amount: BigInt!
+}
+
+type Borrow @Entity {
+  id: ID! # Tx Hash
+  reserve: Reserve!
+  borrower: User!
+  receiver: User!
+  tokenId: String!
+  borrowAPR: BigInt!
+  amount: BigInt!
+}
+
+type Repay @Entity {
+  id: ID! # Tx Hash
+  reserve: Reserve!
+  borrower: User!
+  tokenId: String!
+  amount: BigInt!
+  feeOnCollateralServiceProvider: BigInt!
+}
