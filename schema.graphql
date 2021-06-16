@@ -4,7 +4,11 @@ type Reserve @entity {
   lastUpdateTimestamp: Int!
   isPaused: Boolean!
   isActivated: Boolean!
-  reserveHistories: [ReserveHistory]! @derivedFrom(field: "reserve")
+  reserveHistory: [ReserveHistory!]! @derivedFrom(field: "reserve")
+  deposit: [Deposit!]! @derivedFrom(field: "reserve")
+  withdraw: [Withdraw!]! @derivedFrom(field: "reserve")
+  borrow: [Borrow!]! @derivedFrom(field: "reserve")
+  repay: [Repay!]! @derivedFrom(field: "reserve")
 }
 
 type ReserveHistory @entity {
@@ -12,63 +16,55 @@ type ReserveHistory @entity {
   timestamp: Int!
   reserve: Reserve!
   lTokenInterestIndex: BigInt!
-  supplyAPR: BigInt!
-  borrowAPR: BigInt!
+  depositAPY: BigInt!
+  borrowAPY: BigInt!
   totalBorrow: BigInt!
-  toatlSupply: BigInt!
+  toatlDeposit: BigInt!
 }
 
 type LToken @entity {
   id: ID! # LToken Contract Address
   reserve: Reserve!
-  histories: LTokenHistory[]! @derivedFrom(field: "lToken")
+  lTokenUserBalance: [LTokenUserBalance!]! @derivedFrom(field: "lToken")
 }
 
-type LTokenHistory @Entity {
-  id: ID! # TxHash
-  lToken: LToken!
-  amount: BigInt!
-  type: String! # Transfer, Mint, Burn
-  implicitBalance: BigInt!
-  timestamp: BigInt!
-}
-
+# Transfer, Mint, Burn
 type LTokenUesrBalance @Entity {
   id: ID! # User Address + LToken Address
   lToken: LToken!
   user: User!
   balance: BigInt!
+  lastUpdatedTimestamp: BigInt!
 }
 
 type DToken @entity {
   id: ID! # DToken Contract Address
   reserve: Reserve!
-  histories: DTokenHistory[]! @derivedFrom(field: "dToken")
+  dTokenUserBalance: [DTokenUserBalance!]! @derivedFrom(field: "dToken")
 }
 
-type DTokenHistory @Entity {
-  id: ID! # TxHash
-  dToken: DToken!
-  amount: BigInt!
-  type: String! # Mint, Burn
-  implicitBalance: BigInt!
-  timestamp: BigInt!
-}
-
+# Mint, Burn
 type DTokenUesrBalance @Entity {
   id: ID! # User Address + DToken Address
   dToken: dToken!
   user: User!
   balance: BigInt!
+  lastUpdatedTimestamp: BigInt!
 }
 
 type User @Entity {
   id: ID! # Account address
-  lTokenBalances: LTokenUserBalance[]! @derivedFrom(field: "user")
-  dTokenBalances: DTokenUserBalance[]! @derivedFrom(field: "user")
-  managingAssetBondTokens: AssetBondToken[]! @derivedFrom(field: "collateralServiceProvider")
-  owningAssetBondTokens: AssetBondToken[]! @derivedFrom(field: "borrower")
-  signedAssetBondTokens: AssetBondToken[]! @derivedFrom(field: "signer")
+  lTokenBalance: [LTokenUserBalance!]! @derivedFrom(field: "user")
+  dTokenBalance: [DTokenUserBalance!]! @derivedFrom(field: "user")
+  managingAssetBondToken: [AssetBondToken!]!
+    @derivedFrom(field: "collateralServiceProvider")
+  owningAssetBondToken: [AssetBondToken!]! @derivedFrom(field: "borrower")
+  signedAssetBondToken: [AssetBondToken!]! @derivedFrom(field: "signer")
+  deposit: [Deposit!]! @derivedFrom(field: "account")
+  withdraw: [Withdraw!]! @derivedFrom(field: "account")
+  borrow: [Borrow!]! @derivedFrom(field: "borrower")
+  managingBorrow: [Borrow!]! @derivedFrom(field: "collateralServiceProvider")
+  repay: [Repay!]! @derivedFrom(field: "repay")
 }
 
 type AssetBondToken @Entity {
@@ -89,7 +85,7 @@ type AssetBondToken @Entity {
   signerOpinionHash: String
 }
 
-type Invest @Entity {
+type Deposit @Entity {
   id: ID! # Tx Hash
   reserve: Reserve!
   account: User!
@@ -107,10 +103,10 @@ type Withdraw @Entity {
 type Borrow @Entity {
   id: ID! # Tx Hash
   reserve: Reserve!
+  collateralServiceProvider: User!
   borrower: User!
-  receiver: User!
   tokenId: String!
-  borrowAPR: BigInt!
+  borrowAPY: BigInt!
   amount: BigInt!
 }
 
