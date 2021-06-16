@@ -29,7 +29,7 @@ type LToken @entity {
 }
 
 # Transfer, Mint, Burn
-type LTokenUesrBalance @Entity {
+type LTokenUserBalance @entity {
   id: ID! # User Address + LToken Address
   lToken: LToken!
   user: User!
@@ -44,15 +44,15 @@ type DToken @entity {
 }
 
 # Mint, Burn
-type DTokenUesrBalance @Entity {
+type DTokenUserBalance @entity {
   id: ID! # User Address + DToken Address
-  dToken: dToken!
+  dToken: DToken!
   user: User!
   balance: BigInt!
   lastUpdatedTimestamp: BigInt!
 }
 
-type User @Entity {
+type User @entity {
   id: ID! # Account address
   lTokenBalance: [LTokenUserBalance!]! @derivedFrom(field: "user")
   dTokenBalance: [DTokenUserBalance!]! @derivedFrom(field: "user")
@@ -64,10 +64,10 @@ type User @Entity {
   withdraw: [Withdraw!]! @derivedFrom(field: "account")
   borrow: [Borrow!]! @derivedFrom(field: "borrower")
   managingBorrow: [Borrow!]! @derivedFrom(field: "collateralServiceProvider")
-  repay: [Repay!]! @derivedFrom(field: "repay")
+  repay: [Repay!]! @derivedFrom(field: "borrower")
 }
 
-type AssetBondToken @Entity {
+type AssetBondToken @entity {
   id: ID! # unique TokenID
   signer: User
   borrower: User
@@ -85,14 +85,14 @@ type AssetBondToken @Entity {
   signerOpinionHash: String
 }
 
-type Deposit @Entity {
+type Deposit @entity {
   id: ID! # Tx Hash
   reserve: Reserve!
   account: User!
   amount: BigInt!
 }
 
-type Withdraw @Entity {
+type Withdraw @entity {
   id: ID! # Tx Hash
   reserve: Reserve!
   account: User!
@@ -100,7 +100,7 @@ type Withdraw @Entity {
   amount: BigInt!
 }
 
-type Borrow @Entity {
+type Borrow @entity {
   id: ID! # Tx Hash
   reserve: Reserve!
   collateralServiceProvider: User!
@@ -110,7 +110,7 @@ type Borrow @Entity {
   amount: BigInt!
 }
 
-type Repay @Entity {
+type Repay @entity {
   id: ID! # Tx Hash
   reserve: Reserve!
   borrower: User!
