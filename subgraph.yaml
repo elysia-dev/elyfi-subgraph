@@ -23,4 +23,12 @@ dataSources:
       eventHandlers:
         - event: NewReserve(indexed address,address,address,address,address,uint256)
           handler: handleNewReserve
+        - event: Deposit(indexed address,indexed address,uint256)
+          handler: handleDeposit
+        - event: Withdraw(indexed address,indexed address,indexed address,uint256)
+          handler: handleWithdraw
+        - event: Borrow(indexed address,indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleBorrow
+        - event: Repay(indexed address,indexed address,uint256,uint256,uint256)
+          handler: handleRepay
       file: ./src/mappings/MoneyPoolMapping.ts
