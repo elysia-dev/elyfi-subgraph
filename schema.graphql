@@ -34,7 +34,7 @@ type LTokenUserBalance @entity {
   lToken: LToken!
   user: User!
   balance: BigInt!
-  lastUpdatedTimestamp: BigInt!
+  lastUpdatedTimestamp: Int!
 }
 
 type DToken @entity {
@@ -49,7 +49,7 @@ type DTokenUserBalance @entity {
   dToken: DToken!
   user: User!
   balance: BigInt!
-  lastUpdatedTimestamp: BigInt!
+  lastUpdatedTimestamp: Int!
 }
 
 type User @entity {
@@ -77,10 +77,10 @@ type AssetBondToken @entity {
   couponRate: BigInt
   interestRate: BigInt
   overdueInterestRate: BigInt
-  loanStartTimestamp: BigInt
-  collateralizeTimestamp: BigInt
-  maturityTimestamp: BigInt
-  liquidationTimestamp: BigInt
+  loanStartTimestamp: Int
+  collateralizeTimestamp: Int
+  maturityTimestamp: Int
+  liquidationTimestamp: Int
   ipfsHash: String
   signerOpinionHash: String
 }
@@ -115,6 +115,6 @@ type Repay @entity {
   reserve: Reserve!
   borrower: User!
   tokenId: String!
-  amount: BigInt!
+  userDTokenBalance: BigInt!
   feeOnCollateralServiceProvider: BigInt!
 }
