@@ -76,7 +76,7 @@ export function handleRepay(event: RepayEvent): void {
   let token = AssetBondToken.load(event.params.tokenId.toString());
 
   repay.borrower = borrower.id;
-  // repay.amount = event.params.;
+  repay.userDTokenBalance = event.params.userDTokenBalance;
   repay.feeOnCollateralServiceProvider = event.params.feeOnCollateralServiceProvider;
   repay.reserve = reserve.id;
   repay.tokenId = token.id;
