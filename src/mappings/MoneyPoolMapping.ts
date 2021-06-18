@@ -12,12 +12,13 @@ import {
   Borrow,
   Withdraw,
   AssetBondToken,
-  Repay
+  Repay,
+  LToken,
+  DToken
 } from '../../generated/schema';
 import {
   findOrCreateUser
 } from './utils/initializers';
-
 
 export function handleNewReserve(event: NewReserve): void {
   let reserve = new Reserve(event.params.asset.toHex());
@@ -26,6 +27,14 @@ export function handleNewReserve(event: NewReserve): void {
   reserve.isActivated = true;
   reserve.lastUpdateTimestamp = event.block.timestamp.toI32();
   reserve.save();
+
+  let lToken = new LToken(event.params.lToken.toHex());
+  lToken.reserve = reserve.id;
+  lToken.save();
+
+  let dToken = new DToken(event.params.dToken.toHex());
+  dToken.reserve = reserve.id;
+  dToken.save();
 }
 
 export function handleDeposit(event: DepositEvent): void {

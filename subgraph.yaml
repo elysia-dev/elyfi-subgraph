@@ -17,6 +17,8 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - Reserve
+        - LToken
+        - DToken
       abis:
         - name: MoneyPool
           file: ./abis/MoneyPool.json
