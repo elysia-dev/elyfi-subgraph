@@ -9,7 +9,7 @@ fs.readFile('./subgraph.template.yaml', 'utf8', function (err, data) {
   let result = data;
 
   ["MONEYPOOL", "LTOKEN", "DTOKEN"].forEach((key) => {
-    result = result.replace(new RegExp(`{${key}}`, "g"), process.env[key])
+    result = result.replace(new RegExp(`{${key}}`, "g"), process.env[key] || key)
   })
 
 
