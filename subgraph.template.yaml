@@ -33,6 +33,8 @@ dataSources:
           handler: handleBorrow
         - event: Repay(indexed address,indexed address,uint256,uint256,uint256)
           handler: handleRepay
+        - event: RatesUpdated(indexed address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleRatesUpdated
       file: ./src/mappings/MoneyPoolMapping.ts
   - kind: ethereum/contract
     name: DToken

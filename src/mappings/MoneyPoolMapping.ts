@@ -4,7 +4,8 @@ import {
   Deposit as DepositEvent,
   Borrow as BorrowEvent,
   Withdraw as WithdrawEvent,
-  Repay as RepayEvent
+  Repay as RepayEvent,
+  RatesUpdated as RatespdatedEvent,
 } from '../../generated/Moneypool/MoneyPool';
 import {
   Reserve,
@@ -14,7 +15,8 @@ import {
   AssetBondToken,
   Repay,
   LToken,
-  DToken
+  DToken,
+  ReserveHistory
 } from '../../generated/schema';
 import {
   findOrCreateUser
@@ -57,6 +59,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
   withdraw.account = user.id;
   withdraw.reserve = reserve.id;
   withdraw.amount = event.params.amount;
+  withdraw.to = event.params.to.toHex();
 
   withdraw.save();
 }
@@ -91,4 +94,23 @@ export function handleRepay(event: RepayEvent): void {
   repay.tokenId = token.id;
 
   repay.save()
+}
+
+export function handleRatesUpdated(event: RatespdatedEvent): void {
+  let reserveHistory = new ReserveHistory(event.transaction.hash.toHex());
+  let reserve = Reserve.load(event.params.underlyingAssetAddress.toHex());
+
+  reserve.lTokenInterestIndex = event.params.lTokenIndex;
+  reserve.lastUpdateTimestamp = event.block.timestamp.toI32();
+  reserve.save();
+
+  reserveHistory.timestamp = event.block.timestamp.toI32();
+  reserveHistory.reserve = event.params.underlyingAssetAddress.toHex();
+  reserveHistory.lTokenInterestIndex = event.params.lTokenIndex;
+  reserveHistory.depositAPY = event.params.depositAPY;
+  reserveHistory.borrowAPY = event.params.borrowAPY;
+  reserveHistory.totalBorrow = event.params.totalBorrow;
+  reserveHistory.toatlDeposit = event.params.totalDeposit;
+
+  reserveHistory.save();
 }
