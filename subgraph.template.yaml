@@ -82,3 +82,34 @@ dataSources:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
       file: ./src/mappings/LTokenMapping.ts
+  - kind: ethereum/contract
+    name: Tokenizer
+    network: mainnet
+    source:
+      address: "{TOKENIZER}"
+      abi: Tokenizer
+      startBlock: 1
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assembly
+        - Tokenizer
+      abis:
+        - name: Tokenizer
+          file: ./abis/Tokenizer.json
+      entities:
+        - AssetBondToken
+      eventHandlers:
+        - event: EmptyAssetBondMinted(indexed address,uint256)
+          handler: handleEmptyAssetBondMinted
+        - event: AssetBondCollateralized(indexed address,uint256,uint256,uint256)
+          handler: handleAssetBondCollateralized
+        - event: AssetBondLiquidated(indexed address,uint256)
+          handler: handleAssetBondLiquidated
+        - event: AssetBondReleased(indexed address,uint256)
+          handler: handleAssetBondReleased
+        - event: AssetBondSettled(indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,string)
+          handler: handleAssetBondSettled
+        - event: AssetBondSigned(indexed address,uint256,string)
+          handler: handleAssetBondSigned
+      file: ./src/mappings/TokenizerMapping.ts

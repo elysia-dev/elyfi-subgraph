@@ -69,6 +69,7 @@ type User @entity {
 
 type AssetBondToken @entity {
   id: ID! # unique TokenID
+  state: Int
   signer: User
   borrower: User
   collateralServiceProvider: User
