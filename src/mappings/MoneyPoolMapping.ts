@@ -47,6 +47,7 @@ export function handleDeposit(event: DepositEvent): void {
   deposit.account = user.id;
   deposit.reserve = reserve.id;
   deposit.amount = event.params.amount;
+  deposit.timestamp = event.block.timestamp.toI32();
 
   deposit.save();
 }
@@ -60,6 +61,7 @@ export function handleWithdraw(event: WithdrawEvent): void {
   withdraw.reserve = reserve.id;
   withdraw.amount = event.params.amount;
   withdraw.to = event.params.to.toHex();
+  withdraw.timestamp = event.block.timestamp.toI32();
 
   withdraw.save();
 }
@@ -77,6 +79,7 @@ export function handleBorrow(event: BorrowEvent): void {
   borrow.borrowAPY = event.params.borrowAPY;
   borrow.reserve = reserve.id;
   borrow.tokenId = token.id;
+  borrow.timestamp = event.block.timestamp.toI32();
 
   borrow.save();
 }
@@ -92,6 +95,7 @@ export function handleRepay(event: RepayEvent): void {
   repay.feeOnCollateralServiceProvider = event.params.feeOnCollateralServiceProvider;
   repay.reserve = reserve.id;
   repay.tokenId = token.id;
+  repay.timestamp = event.block.timestamp.toI32();
 
   repay.save()
 }
