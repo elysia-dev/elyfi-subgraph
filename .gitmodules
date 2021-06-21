@@ -1,0 +1,3 @@
+[submodule "lib/elyfi"]
+	path = lib/elyfi
+	url = https://github.com/elysia-dev/elyfi.git

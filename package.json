@@ -2,7 +2,8 @@
   "name": "elyfi-subgraph",
   "version": "0.1.0",
   "scripts": {
-    "prepare": "ts-node ./generateConfig.ts",
+    "deploy-contracts": "cd lib/elyfi && yarn && yarn hardhat compile && yarn hardhat deploy --network ganache",
+    "subgraphgen": "ts-node ./generateConfig.ts",
     "create": "graph create elysia-dev/elyfi-subgraph --node https://api.thegraph.com/deploy/",
     "create-local": "graph create elysia-dev/elyfi-subgraph --node http://127.0.0.1:8020",
     "codegen": "graph codegen",
