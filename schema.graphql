@@ -65,6 +65,8 @@ type User @entity {
   borrow: [Borrow!]! @derivedFrom(field: "borrower")
   managingBorrow: [Borrow!]! @derivedFrom(field: "collateralServiceProvider")
   repay: [Repay!]! @derivedFrom(field: "borrower")
+  isCouncil: Boolean!
+  isCollateralServiceProvider: Boolean!
 }
 
 type AssetBondToken @entity {

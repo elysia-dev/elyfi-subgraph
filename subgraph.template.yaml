@@ -113,3 +113,30 @@ dataSources:
         - event: AssetBondSigned(indexed address,uint256,string)
           handler: handleAssetBondSigned
       file: ./src/mappings/TokenizerMapping.ts
+  - kind: ethereum/contract
+    name: Connector
+    network: mainnet
+    source:
+      address: "{CONNECTOR}"
+      abi: Connector
+      startBlock: 1
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assembly
+        - Connector
+      abis:
+        - name: Connector
+          file: ./abis/Connector.json
+      entities:
+        - AssetBondToken
+      eventHandlers:
+        - event: CollateralServiceProviderRevoked(indexed address)
+          handler: handleCollateralServiceProviderRevoked
+        - event: CouncilRevoked(indexed address)
+          handler: handleCouncilRevoked
+        - event: NewCollateralServiceProviderAdded(indexed address)
+          handler: handleNewCollateralServiceProviderAdded
+        - event: NewCouncilAdded(indexed address)
+          handler: handleNewCouncilAdded
+      file: ./src/mappings/ConnectorMapping.ts

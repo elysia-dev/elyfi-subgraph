@@ -8,7 +8,7 @@ fs.readFile('./subgraph.template.yaml', 'utf8', function (err, data) {
 
   let result = data;
 
-  ["MONEYPOOL", "LTOKEN", "DTOKEN", "TOKENIZER"].forEach((key) => {
+  ["MONEYPOOL", "LTOKEN", "DTOKEN", "TOKENIZER", "CONNECTOR"].forEach((key) => {
     result = result.replace(new RegExp(`{${key}}`, "g"), process.env[key] || key)
   })
 
