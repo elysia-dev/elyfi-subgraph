@@ -6,9 +6,9 @@ export function findOrCreateUser(id: string): User {
 
   if (!user) {
     user = new User(id);
-    user.save();
     user.isCouncil = false;
     user.isCollateralServiceProvider = false;
+    user.save();
   }
 
   return user as User;
