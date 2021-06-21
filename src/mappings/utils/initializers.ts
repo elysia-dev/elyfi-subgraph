@@ -2,7 +2,14 @@ import { BigInt } from "@graphprotocol/graph-ts";
 import { User, DTokenUserBalance, LTokenUserBalance } from "../../../generated/schema"
 
 export function findOrCreateUser(id: string): User {
-  return (User.load(id) || new User(id)) as User
+  let user = User.load(id);
+
+  if (!user) {
+    user = new User(id);
+    user.save();
+  }
+
+  return user as User;
 }
 
 export function findOrCreateDTokenUserBalance(
