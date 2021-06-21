@@ -63,3 +63,6 @@ typings/
 generated/*
 data/*
 build/*
+
+.*.env
+subgraph.yaml
