@@ -8,7 +8,7 @@ dataSources:
     name: MoneyPool
     network: mainnet
     source:
-      address: "{MONEYPOOL}"
+      address: "{MoneyPool}"
       abi: MoneyPool
       startBlock: 1
     mapping:
@@ -40,7 +40,7 @@ dataSources:
     name: DToken
     network: mainnet
     source:
-      address: "{DTOKEN}"
+      address: "{DToken}"
       abi: DToken
       startBlock: 1
     mapping:
@@ -62,7 +62,7 @@ dataSources:
     name: LToken
     network: mainnet
     source:
-      address: "{LTOKEN}"
+      address: "{LToken}"
       abi: LToken
       startBlock: 1
     mapping:
@@ -86,7 +86,7 @@ dataSources:
     name: Tokenizer
     network: mainnet
     source:
-      address: "{TOKENIZER}"
+      address: "{Tokenizer}"
       abi: Tokenizer
       startBlock: 1
     mapping:
@@ -117,7 +117,7 @@ dataSources:
     name: Connector
     network: mainnet
     source:
-      address: "{CONNECTOR}"
+      address: "{Connector}"
       abi: Connector
       startBlock: 1
     mapping:

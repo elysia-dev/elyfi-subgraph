@@ -1,19 +1,21 @@
 import * as fs from "fs";
-require('dotenv').config();
 
-fs.readFile('./subgraph.template.yaml', 'utf8', function (err, data) {
-  if (err) {
-    return console.log(err);
-  }
+interface DeployedContract {
+  address: string
+}
 
-  let result = data;
+const main = async () => {
+  let templateData = await fs.promises.readFile('./subgraph.template.yaml', 'utf8');
 
-  ["MONEYPOOL", "LTOKEN", "DTOKEN", "TOKENIZER", "CONNECTOR"].forEach((key) => {
-    result = result.replace(new RegExp(`{${key}}`, "g"), process.env[key] || key)
-  })
+  await Promise.all([
+    'MoneyPool', 'LToken', 'DToken', 'Tokenizer', 'Connector'
+  ].map(async (key) => {
+    const file = await fs.promises.readFile(`./lib/elyfi/deployments/ganache/${key}.json`, 'utf8')
+    const data = JSON.parse(file) as DeployedContract;
+    templateData = templateData.replace(new RegExp(`{${key}}`, "g"), data.address)
+  }))
 
+  await fs.promises.writeFile('./subgraph.yaml', templateData, 'utf8');
+}
 
-  fs.writeFile('./subgraph.yaml', result, 'utf8', function (err) {
-    if (err) return console.log(err);
-  });
-});
+main();

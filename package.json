@@ -9,7 +9,8 @@
     "codegen": "graph codegen",
     "build": "graph build",
     "deploy": "graph deploy elysia-dev/elyfi-subgraph --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
-    "deploy-local": "graph deploy elysia-dev/elyfi-subgraph --ipfs http://localhost:5001 --node http://127.0.0.1:8020"
+    "deploy-local": "graph deploy elysia-dev/elyfi-subgraph --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "task": "cd lib/elyfi && yarn task"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.20.0",
@@ -19,7 +20,6 @@
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",
-    "babel-register": "^6.26.0",
-    "dotenv": "^10.0.0"
+    "babel-register": "^6.26.0"
   }
 }
