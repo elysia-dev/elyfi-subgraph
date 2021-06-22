@@ -28,6 +28,10 @@ export function handleNewReserve(event: NewReserve): void {
   reserve.isPaused = false;
   reserve.isActivated = true;
   reserve.lastUpdateTimestamp = event.block.timestamp.toI32();
+  reserve.borrowAPY = BigInt.fromString('0');
+  reserve.depositAPY = BigInt.fromString('0');
+  reserve.totalBorrow = BigInt.fromString('0');
+  reserve.toatlDeposit = BigInt.fromString('0');
   reserve.save();
 
   let lToken = new LToken(event.params.lToken.toHex());
@@ -106,6 +110,10 @@ export function handleRatesUpdated(event: RatespdatedEvent): void {
 
   reserve.lTokenInterestIndex = event.params.lTokenIndex;
   reserve.lastUpdateTimestamp = event.block.timestamp.toI32();
+  reserve.borrowAPY = event.params.borrowAPY;
+  reserve.depositAPY = event.params.depositAPY;
+  reserve.totalBorrow = event.params.totalBorrow;
+  reserve.toatlDeposit = event.params.totalDeposit;
   reserve.save();
 
   reserveHistory.timestamp = event.block.timestamp.toI32();

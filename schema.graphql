@@ -9,6 +9,12 @@ type Reserve @entity {
   withdraw: [Withdraw!]! @derivedFrom(field: "reserve")
   borrow: [Borrow!]! @derivedFrom(field: "reserve")
   repay: [Repay!]! @derivedFrom(field: "reserve")
+  lToken: LToken! @derivedFrom(field: "reserve")
+  dToken: DToken! @derivedFrom(field: "reserve")
+  depositAPY: BigInt!
+  borrowAPY: BigInt!
+  totalBorrow: BigInt!
+  toatlDeposit: BigInt!
 }
 
 type ReserveHistory @entity {
