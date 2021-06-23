@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: MoneyPool
-    network: mainnet
+    network: { Network }
     source:
-      address: "{MoneyPool}"
+      address: "{ MoneyPool }"
       abi: MoneyPool
-      startBlock: 1
+      startBlock: { StartBlock }
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -38,11 +38,11 @@ dataSources:
       file: ./src/mappings/MoneyPoolMapping.ts
   - kind: ethereum/contract
     name: DToken
-    network: mainnet
+    network: { Network }
     source:
-      address: "{DToken}"
+      address: "{ DToken }"
       abi: DToken
-      startBlock: 1
+      startBlock: { StartBlock }
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -60,11 +60,11 @@ dataSources:
       file: ./src/mappings/DTokenMapping.ts
   - kind: ethereum/contract
     name: LToken
-    network: mainnet
+    network: { Network }
     source:
-      address: "{LToken}"
+      address: "{ LToken }"
       abi: LToken
-      startBlock: 1
+      startBlock: { StartBlock }
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -84,11 +84,11 @@ dataSources:
       file: ./src/mappings/LTokenMapping.ts
   - kind: ethereum/contract
     name: Tokenizer
-    network: mainnet
+    network: { Network }
     source:
-      address: "{Tokenizer}"
+      address: "{ Tokenizer }"
       abi: Tokenizer
-      startBlock: 1
+      startBlock: { StartBlock }
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -115,11 +115,11 @@ dataSources:
       file: ./src/mappings/TokenizerMapping.ts
   - kind: ethereum/contract
     name: Connector
-    network: mainnet
+    network: { Network }
     source:
-      address: "{Connector}"
+      address: "{ Connector }"
       abi: Connector
-      startBlock: 1
+      startBlock: { StartBlock }
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
