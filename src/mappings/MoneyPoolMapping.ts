@@ -31,7 +31,7 @@ export function handleNewReserve(event: NewReserve): void {
   reserve.borrowAPY = BigInt.fromString('0');
   reserve.depositAPY = BigInt.fromString('0');
   reserve.totalBorrow = BigInt.fromString('0');
-  reserve.toatlDeposit = BigInt.fromString('0');
+  reserve.totalDeposit = BigInt.fromString('0');
   reserve.save();
 
   let lToken = new LToken(event.params.lToken.toHex());
@@ -113,7 +113,7 @@ export function handleRatesUpdated(event: RatespdatedEvent): void {
   reserve.borrowAPY = event.params.borrowAPY;
   reserve.depositAPY = event.params.depositAPY;
   reserve.totalBorrow = event.params.totalBorrow;
-  reserve.toatlDeposit = event.params.totalDeposit;
+  reserve.totalDeposit = event.params.totalDeposit;
   reserve.save();
 
   reserveHistory.timestamp = event.block.timestamp.toI32();
@@ -122,7 +122,7 @@ export function handleRatesUpdated(event: RatespdatedEvent): void {
   reserveHistory.depositAPY = event.params.depositAPY;
   reserveHistory.borrowAPY = event.params.borrowAPY;
   reserveHistory.totalBorrow = event.params.totalBorrow;
-  reserveHistory.toatlDeposit = event.params.totalDeposit;
+  reserveHistory.totalDeposit = event.params.totalDeposit;
 
   reserveHistory.save();
 }

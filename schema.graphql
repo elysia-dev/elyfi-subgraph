@@ -14,7 +14,7 @@ type Reserve @entity {
   depositAPY: BigInt!
   borrowAPY: BigInt!
   totalBorrow: BigInt!
-  toatlDeposit: BigInt!
+  totalDeposit: BigInt!
 }
 
 type ReserveHistory @entity {
@@ -25,7 +25,7 @@ type ReserveHistory @entity {
   depositAPY: BigInt!
   borrowAPY: BigInt!
   totalBorrow: BigInt!
-  toatlDeposit: BigInt!
+  totalDeposit: BigInt!
 }
 
 type LToken @entity {
