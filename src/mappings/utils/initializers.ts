@@ -1,5 +1,5 @@
 import { BigInt } from "@graphprotocol/graph-ts";
-import { User, DTokenUserBalance, LTokenUserBalance, Reserve, LToken } from "../../../generated/schema"
+import { User, DTokenUserBalance, LTokenUserBalance, Reserve, LToken, DToken } from "../../../generated/schema"
 
 export function findOrCreateUser(id: string): User {
   let user = User.load(id);
@@ -20,11 +20,11 @@ export function findOrCreateDTokenUserBalance(
   timestamp: BigInt
 ): DTokenUserBalance {
   let dTokenUserBalance = DTokenUserBalance.load(user + dTokenAddress);
-  let dToken = LToken.load(dTokenAddress);
+  let dToken = DToken.load(dTokenAddress);
   let reserve = Reserve.load(dToken.reserve);
 
   if (!dTokenUserBalance) {
-    reserve.lTokenUserBalanceCount = reserve.lTokenUserBalanceCount + 1;
+    reserve.dTokenUserBalanceCount = reserve.dTokenUserBalanceCount + 1;
     reserve.save();
   }
 
