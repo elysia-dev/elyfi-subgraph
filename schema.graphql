@@ -11,10 +11,14 @@ type Reserve @entity {
   repay: [Repay!]! @derivedFrom(field: "reserve")
   lToken: LToken! @derivedFrom(field: "reserve")
   dToken: DToken! @derivedFrom(field: "reserve")
+  lTokenUserBalance: LTokenUserBalance! @derivedFrom(field: "reserve")
+  dTokenUserBalance: DTokenUserBalance! @derivedFrom(field: "reserve")
   depositAPY: BigInt!
   borrowAPY: BigInt!
   totalBorrow: BigInt!
   totalDeposit: BigInt!
+  lTokenUserBalanceCount: Int!
+  dTokenUserBalanceCount: Int!
 }
 
 type ReserveHistory @entity {
@@ -39,6 +43,7 @@ type LTokenUserBalance @entity {
   id: ID! # User Address + LToken Address
   lToken: LToken!
   user: User!
+  reserve: Reserve!
   balance: BigInt!
   lastUpdatedTimestamp: Int!
 }
@@ -53,6 +58,7 @@ type DToken @entity {
 type DTokenUserBalance @entity {
   id: ID! # User Address + DToken Address
   dToken: DToken!
+  reserve: Reserve!
   user: User!
   balance: BigInt!
   lastUpdatedTimestamp: Int!

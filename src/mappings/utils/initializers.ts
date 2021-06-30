@@ -1,5 +1,5 @@
 import { BigInt } from "@graphprotocol/graph-ts";
-import { User, DTokenUserBalance, LTokenUserBalance } from "../../../generated/schema"
+import { User, DTokenUserBalance, LTokenUserBalance, Reserve, LToken } from "../../../generated/schema"
 
 export function findOrCreateUser(id: string): User {
   let user = User.load(id);
@@ -16,17 +16,25 @@ export function findOrCreateUser(id: string): User {
 
 export function findOrCreateDTokenUserBalance(
   user: string,
-  dToken: string,
+  dTokenAddress: string,
   timestamp: BigInt
 ): DTokenUserBalance {
-  let dTokenUserBalance = DTokenUserBalance.load(user + dToken);
+  let dTokenUserBalance = DTokenUserBalance.load(user + dTokenAddress);
+  let dToken = LToken.load(dTokenAddress);
+  let reserve = Reserve.load(dToken.reserve);
 
   if (!dTokenUserBalance) {
-    dTokenUserBalance = new DTokenUserBalance(user + dToken);
+    reserve.lTokenUserBalanceCount = reserve.lTokenUserBalanceCount + 1;
+    reserve.save();
+  }
+
+  if (!dTokenUserBalance) {
+    dTokenUserBalance = new DTokenUserBalance(user + dTokenAddress);
     dTokenUserBalance.balance = BigInt.fromString('0');
     dTokenUserBalance.user = user;
-    dTokenUserBalance.dToken = dToken;
+    dTokenUserBalance.dToken = dTokenAddress;
     dTokenUserBalance.lastUpdatedTimestamp = timestamp.toI32();
+    dTokenUserBalance.reserve = reserve.id;
     dTokenUserBalance.save();
   }
 
@@ -35,19 +43,27 @@ export function findOrCreateDTokenUserBalance(
 
 export function findOrCreateLTokenUserBalance(
   user: string,
-  lToken: string,
+  lTokenAddrees: string,
   timestamp: BigInt
 ): LTokenUserBalance {
-  let lTokenUserBalcne = LTokenUserBalance.load(user + lToken);
+  let lTokenUserBalance = LTokenUserBalance.load(user + lTokenAddrees);
+  let lToken = LToken.load(lTokenAddrees);
+  let reserve = Reserve.load(lToken.reserve);
 
-  if (!lTokenUserBalcne) {
-    lTokenUserBalcne = new LTokenUserBalance(user + lToken);
-    lTokenUserBalcne.balance = BigInt.fromString('0');
-    lTokenUserBalcne.user = user;
-    lTokenUserBalcne.lToken = lToken;
-    lTokenUserBalcne.lastUpdatedTimestamp = timestamp.toI32();
-    lTokenUserBalcne.save();
+  if (!lTokenUserBalance) {
+    reserve.lTokenUserBalanceCount = reserve.lTokenUserBalanceCount + 1;
+    reserve.save();
   }
 
-  return lTokenUserBalcne as LTokenUserBalance
+  if (!lTokenUserBalance) {
+    lTokenUserBalance = new LTokenUserBalance(user + lTokenAddrees);
+    lTokenUserBalance.balance = BigInt.fromString('0');
+    lTokenUserBalance.user = user;
+    lTokenUserBalance.lToken = lTokenAddrees;
+    lTokenUserBalance.lastUpdatedTimestamp = timestamp.toI32();
+    lTokenUserBalance.reserve = reserve.id;
+    lTokenUserBalance.save();
+  }
+
+  return lTokenUserBalance as LTokenUserBalance
 }

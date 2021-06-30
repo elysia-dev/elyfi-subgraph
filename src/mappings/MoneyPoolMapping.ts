@@ -32,6 +32,8 @@ export function handleNewReserve(event: NewReserve): void {
   reserve.depositAPY = BigInt.fromString('0');
   reserve.totalBorrow = BigInt.fromString('0');
   reserve.totalDeposit = BigInt.fromString('0');
+  reserve.dTokenUserBalanceCount = 0;
+  reserve.lTokenUserBalanceCount = 0;
   reserve.save();
 
   let lToken = new LToken(event.params.lToken.toHex());
