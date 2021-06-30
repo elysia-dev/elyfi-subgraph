@@ -17,4 +17,4 @@ Our docker-compose file includes basic containers like graph node, ifps and post
 For test transaction data,
 
 - `yarn task createDeposit --network ganache`
-- `yarn task createWithdraw --newtork ganaceh`
+- `yarn task createWithdraw --newtork ganache`
