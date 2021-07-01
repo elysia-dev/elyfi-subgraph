@@ -19,7 +19,7 @@ const main = async () => {
     templateData = templateData.replace(new RegExp(`{ ${key} }`, "g"), data.address)
   }))
 
-  templateData = templateData.replace(new RegExp(`{ Network }`, "g"), network === 'ganache' ? 'mainnet' : 'mainnet')
+  templateData = templateData.replace(new RegExp(`{ Network }`, "g"), network === 'ganache' ? 'mainnet' : 'kovan')
   templateData = templateData.replace(new RegExp(`{ StartBlock }`, "g"),
     network === 'ganache' ? '1' : network === 'kovan' ? kovanStartBlock : ethStartBlock
   )
