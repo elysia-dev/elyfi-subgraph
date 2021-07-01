@@ -23,7 +23,7 @@ dataSources:
         - name: MoneyPool
           file: ./abis/MoneyPool.json
       eventHandlers:
-        - event: NewReserve(indexed address,address,address,address,address,uint256)
+        - event: NewReserve(indexed address,address,address,address,address,address,uint256)
           handler: handleNewReserve
         - event: Deposit(indexed address,indexed address,uint256)
           handler: handleDeposit
@@ -75,10 +75,6 @@ dataSources:
         - name: LToken
           file: ./abis/LToken.json
       eventHandlers:
-        - event: Burn(indexed address,indexed address,uint256,uint256)
-          handler: handleBurn
-        - event: Mint(indexed address,uint256,uint256)
-          handler: handleMint
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
       file: ./src/mappings/LTokenMapping.ts

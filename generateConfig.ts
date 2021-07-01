@@ -5,7 +5,7 @@ interface DeployedContract {
 }
 
 const network = process.env.NETWORK || 'mainnet'
-const kovanStartBlock = '25661959'
+const kovanStartBlock = '25834770'
 const ethStartBlock = '12689173'
 
 const main = async () => {
@@ -19,7 +19,7 @@ const main = async () => {
     templateData = templateData.replace(new RegExp(`{ ${key} }`, "g"), data.address)
   }))
 
-  templateData = templateData.replace(new RegExp(`{ Network }`, "g"), network === 'ganache' ? 'mainnet' : network)
+  templateData = templateData.replace(new RegExp(`{ Network }`, "g"), network === 'ganache' ? 'mainnet' : 'mainnet')
   templateData = templateData.replace(new RegExp(`{ StartBlock }`, "g"),
     network === 'ganache' ? '1' : network === 'kovan' ? kovanStartBlock : ethStartBlock
   )

@@ -6,7 +6,11 @@
         "name": "maxReserveCount_",
         "type": "uint256"
       },
-      { "internalType": "address", "name": "connector", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "connector",
+        "type": "address"
+      }
     ],
     "stateMutability": "nonpayable",
     "type": "constructor"
@@ -89,6 +93,43 @@
         "type": "address"
       },
       {
+        "indexed": true,
+        "internalType": "address",
+        "name": "borrower",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "userDTokenBalance",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "feeOnCollateralServiceProvider",
+        "type": "uint256"
+      }
+    ],
+    "name": "Liquidation",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      },
+      {
         "indexed": false,
         "internalType": "address",
         "name": "lToken",
@@ -110,6 +151,12 @@
         "indexed": false,
         "internalType": "address",
         "name": "tokenizer",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "incentivePool",
         "type": "address"
       },
       {
@@ -235,11 +282,49 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "asset", "type": "address" },
-      { "internalType": "address", "name": "lToken", "type": "address" },
-      { "internalType": "address", "name": "dToken", "type": "address" },
-      { "internalType": "address", "name": "interestModel", "type": "address" },
-      { "internalType": "address", "name": "tokenizer", "type": "address" },
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      }
+    ],
+    "name": "activateMoneyPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "lToken",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "dToken",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "interestModel",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "tokenizer",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "incentivePool",
+        "type": "address"
+      },
       {
         "internalType": "uint256",
         "name": "moneyPoolFactor_",
@@ -253,10 +338,16 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "asset", "type": "address" },
-      { "internalType": "address", "name": "receiver", "type": "address" },
-      { "internalType": "uint256", "name": "borrowAmount", "type": "uint256" },
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
     ],
     "name": "borrow",
     "outputs": [],
@@ -265,9 +356,34 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "asset", "type": "address" },
-      { "internalType": "address", "name": "account", "type": "address" },
-      { "internalType": "uint256", "name": "amount", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      }
+    ],
+    "name": "deactivateMoneyPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
     ],
     "name": "deposit",
     "outputs": [],
@@ -276,16 +392,30 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "asset", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      }
     ],
     "name": "getLTokenInterestIndex",
-    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
     "stateMutability": "view",
     "type": "function"
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "asset", "type": "address" }
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      }
     ],
     "name": "getReserveData",
     "outputs": [
@@ -301,7 +431,11 @@
             "name": "lTokenInterestIndex",
             "type": "uint256"
           },
-          { "internalType": "uint256", "name": "borrowAPY", "type": "uint256" },
+          {
+            "internalType": "uint256",
+            "name": "borrowAPY",
+            "type": "uint256"
+          },
           {
             "internalType": "uint256",
             "name": "depositAPY",
@@ -337,9 +471,21 @@
             "name": "tokenizerAddress",
             "type": "address"
           },
-          { "internalType": "uint8", "name": "id", "type": "uint8" },
-          { "internalType": "bool", "name": "isPaused", "type": "bool" },
-          { "internalType": "bool", "name": "isActivated", "type": "bool" }
+          {
+            "internalType": "uint8",
+            "name": "id",
+            "type": "uint8"
+          },
+          {
+            "internalType": "bool",
+            "name": "isPaused",
+            "type": "bool"
+          },
+          {
+            "internalType": "bool",
+            "name": "isActivated",
+            "type": "bool"
+          }
         ],
         "internalType": "struct DataStruct.ReserveData",
         "name": "",
@@ -351,9 +497,47 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "asset", "type": "address" },
-      { "internalType": "uint256", "name": "amount", "type": "uint256" },
-      { "internalType": "uint256", "name": "tokenId", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
+    ],
+    "name": "liquidate",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      }
+    ],
+    "name": "pauseMoneyPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tokenId",
+        "type": "uint256"
+      }
     ],
     "name": "repay",
     "outputs": [],
@@ -362,9 +546,34 @@
   },
   {
     "inputs": [
-      { "internalType": "address", "name": "asset", "type": "address" },
-      { "internalType": "address", "name": "account", "type": "address" },
-      { "internalType": "uint256", "name": "amount", "type": "uint256" }
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      }
+    ],
+    "name": "unPauseMoneyPool",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "asset",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
     ],
     "name": "withdraw",
     "outputs": [],
