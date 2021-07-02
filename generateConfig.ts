@@ -7,6 +7,7 @@ interface DeployedContract {
 const network = process.env.NETWORK || 'mainnet'
 const kovanStartBlock = '25834770'
 const ethStartBlock = '12689173'
+const ropstenStartBlock = '10554048'
 
 const main = async () => {
   let templateData = await fs.promises.readFile('./subgraph.template.yaml', 'utf8');
@@ -19,9 +20,9 @@ const main = async () => {
     templateData = templateData.replace(new RegExp(`{ ${key} }`, "g"), data.address)
   }))
 
-  templateData = templateData.replace(new RegExp(`{ Network }`, "g"), network === 'ganache' ? 'mainnet' : 'kovan')
+  templateData = templateData.replace(new RegExp(`{ Network }`, "g"), network === 'ganache' ? 'mainnet' : network)
   templateData = templateData.replace(new RegExp(`{ StartBlock }`, "g"),
-    network === 'ganache' ? '1' : network === 'kovan' ? kovanStartBlock : ethStartBlock
+    network === 'ganache' ? '1' : network === 'kovan' ? kovanStartBlock : network === 'ropsten' ? ropstenStartBlock : ethStartBlock
   )
 
   await fs.promises.writeFile('./subgraph.yaml', templateData, 'utf8');
