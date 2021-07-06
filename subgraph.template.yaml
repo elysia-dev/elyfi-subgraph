@@ -77,6 +77,10 @@ dataSources:
       eventHandlers:
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
+        - event: Burn(indexed address,indexed address,uint256,uint256)
+          handler: handleBurn
+        - event: Mint(indexed address,uint256,uint256)
+          handler: handleMint
       file: ./src/mappings/LTokenMapping.ts
   - kind: ethereum/contract
     name: Tokenizer

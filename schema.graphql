@@ -36,6 +36,8 @@ type LToken @entity {
   id: ID! # LToken Contract Address
   reserve: Reserve!
   lTokenUserBalance: [LTokenUserBalance!]! @derivedFrom(field: "lToken")
+  lTokenMint: [LTokenMint!]! @derivedFrom(field: "lToken")
+  lTokenBurn: [LTokenBurn!]! @derivedFrom(field: "lToken")
 }
 
 # Transfer, Mint, Burn
@@ -67,6 +69,8 @@ type DTokenUserBalance @entity {
 type User @entity {
   id: ID! # Account address
   lTokenBalance: [LTokenUserBalance!]! @derivedFrom(field: "user")
+  lTokenMint: [LTokenMint!]! @derivedFrom(field: "account")
+  lTokenBurn: [LTokenBurn!]! @derivedFrom(field: "account")
   dTokenBalance: [DTokenUserBalance!]! @derivedFrom(field: "user")
   managingAssetBondToken: [AssetBondToken!]!
     @derivedFrom(field: "collateralServiceProvider")
@@ -136,4 +140,21 @@ type Repay @entity {
   userDTokenBalance: BigInt!
   feeOnCollateralServiceProvider: BigInt!
   timestamp: Int!
+}
+
+type LTokenMint @entity {
+  id: ID!
+  lToken: LToken!
+  account: User!
+  amount: BigInt!
+  index: BigInt!
+}
+
+type LTokenBurn @entity {
+  id: ID!
+  lToken: LToken!
+  account: User!
+  receiver: User!
+  amount: BigInt!
+  index: BigInt!
 }
