@@ -148,6 +148,7 @@ type LTokenMint @entity {
   account: User!
   amount: BigInt!
   index: BigInt!
+  timestamp: Int!
 }
 
 type LTokenBurn @entity {
@@ -157,4 +158,5 @@ type LTokenBurn @entity {
   receiver: User!
   amount: BigInt!
   index: BigInt!
+  timestamp: Int!
 }

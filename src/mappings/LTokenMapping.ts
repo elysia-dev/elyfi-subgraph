@@ -40,6 +40,7 @@ export function handleMint(event: MintEvent): void {
   mint.lToken = event.address.toHex();
   mint.amount = event.params.amount;
   mint.index = event.params.index;
+  mint.timestamp = event.block.timestamp.toI32();
 
   mint.save();
 }
@@ -52,6 +53,7 @@ export function handleBurn(event: BurnEvent): void {
   burn.lToken = event.address.toHex();
   burn.amount = event.params.amount;
   burn.index = event.params.index;
+  burn.timestamp = event.block.timestamp.toI32();
 
   burn.save();
 }
