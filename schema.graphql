@@ -95,7 +95,7 @@ type AssetBondToken @entity {
   debtCeiling: BigInt
   couponRate: BigInt
   interestRate: BigInt
-  overdueInterestRate: BigInt
+  delinquencyRate: BigInt
   loanStartTimestamp: Int
   collateralizeTimestamp: Int
   maturityTimestamp: Int

@@ -180,7 +180,7 @@
       {
         "indexed": false,
         "internalType": "uint256",
-        "name": "overdueInterestRate",
+        "name": "delinquencyRate",
         "type": "uint256"
       },
       {
@@ -418,7 +418,7 @@
           },
           {
             "internalType": "uint256",
-            "name": "overdueInterestRate",
+            "name": "delinquencyRate",
             "type": "uint256"
           },
           {
@@ -711,7 +711,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "overdueInterestRate",
+        "name": "delinquencyRate",
         "type": "uint256"
       },
       {

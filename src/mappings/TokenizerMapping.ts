@@ -18,9 +18,9 @@ enum AssetBondTokenState {
   SETTLED,
   CONFIRMED,
   COLLATERALIZED,
-  MATURED,
+  DELINQUENT,
   REDEEMED,
-  NOT_PERFORMED
+  LIQUIDATED,
 }
 
 export function handleEmptyAssetBondMinted(event: EmptyAssetBondMinted): void {
@@ -45,7 +45,7 @@ export function handleAssetBondCollateralized(event: AssetBondCollateralized): v
 
 export function handleAssetBondLiquidated(event: AssetBondLiquidated): void {
   let assetBondToken = AssetBondToken.load(event.params.tokenId.toString())
-  assetBondToken.state = AssetBondTokenState.NOT_PERFORMED;
+  assetBondToken.state = AssetBondTokenState.LIQUIDATED;
 
   assetBondToken.save();
 }
@@ -66,7 +66,7 @@ export function handleAssetBondSettled(event: AssetBondSettled): void {
   assetBondToken.signer = signer.id;
   assetBondToken.principal = event.params.principal;
   assetBondToken.couponRate = event.params.couponRate;
-  assetBondToken.overdueInterestRate = event.params.overdueInterestRate;
+  assetBondToken.delinquencyRate = event.params.delinquencyRate;
   assetBondToken.debtCeiling = event.params.debtCeiling;
   assetBondToken.maturityTimestamp = event.params.maturityTimestamp.toI32();
   assetBondToken.liquidationTimestamp = event.params.maturityTimestamp.toI32();
