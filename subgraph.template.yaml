@@ -108,7 +108,7 @@ dataSources:
           handler: handleAssetBondLiquidated
         - event: AssetBondReleased(indexed address,uint256)
           handler: handleAssetBondReleased
-        - event: AssetBondSettled(indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,string)
+        - event: AssetBondSettled(indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,string)
           handler: handleAssetBondSettled
         - event: AssetBondSigned(indexed address,uint256,string)
           handler: handleAssetBondSigned

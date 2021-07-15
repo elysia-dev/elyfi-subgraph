@@ -203,6 +203,12 @@
       },
       {
         "indexed": false,
+        "internalType": "uint256",
+        "name": "loanStartTimestamp",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
         "internalType": "string",
         "name": "ifpsHash",
         "type": "string"

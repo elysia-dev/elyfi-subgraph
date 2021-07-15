@@ -70,6 +70,7 @@ export function handleAssetBondSettled(event: AssetBondSettled): void {
   assetBondToken.debtCeiling = event.params.debtCeiling;
   assetBondToken.maturityTimestamp = event.params.maturityTimestamp.toI32();
   assetBondToken.liquidationTimestamp = event.params.maturityTimestamp.toI32();
+  assetBondToken.loanStartTimestamp = event.params.loanStartTimestamp.toI32();
   assetBondToken.ipfsHash = event.params.ifpsHash;
   assetBondToken.state = AssetBondTokenState.SETTLED;
 
