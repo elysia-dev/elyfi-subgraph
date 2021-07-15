@@ -9,10 +9,10 @@ Our docker-compose file includes basic containers like graph node, ifps and post
 
 - `docker-compose up -d`
 - `yarn deploy-contracts` : Deploy elyfi contrats to ganache
-- `yarn subgraphgen` : Generate subgraph.yaml
+- `yarn prepare:local` : Generate subgraph.yaml
 - `yarn codegen`
-- `yarn create-local`
-- `yarn deploy-local`
+- `yarn create:local`
+- `yarn deploy:local`
 
 For test transaction data,
 
