@@ -6,7 +6,7 @@ interface DeployedContract {
 
 const network = process.env.NETWORK || 'mainnet'
 const kovanStartBlock = '25834770'
-const ethStartBlock = '12689173'
+const ethStartBlock = '12830628	'
 const ropstenStartBlock = '10554048'
 
 const main = async () => {

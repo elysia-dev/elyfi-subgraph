@@ -7,6 +7,7 @@
     "prepare:local": "NETWORK=ganache ts-node ./generateConfig.ts",
     "prepare:kovan": "NETWORK=kovan ts-node ./generateConfig.ts",
     "prepare:ropsten": "NETWORK=ropsten ts-node ./generateConfig.ts",
+    "prepare:mainnet": "NETWORK=mainnet ts-node ./generateConfig.ts",
     "create": "graph create elysia-dev/elyfi-subgraph --node https://api.thegraph.com/deploy/",
     "create:kovan": "graph create elysia-dev/elyfi-subgraph-kovan --node https://api.thegraph.com/deploy/",
     "create:ropsten": "graph create modonguk/elyfi --node https://api.thegraph.com/deploy/",
