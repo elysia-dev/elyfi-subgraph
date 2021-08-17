@@ -140,3 +140,57 @@ dataSources:
         - event: NewCouncilAdded(indexed address)
           handler: handleNewCouncilAdded
       file: ./src/mappings/ConnectorMapping.ts
+  - kind: ethereum/contract
+    name: ELStakingPool
+    network: { Network }
+    source:
+      address: "{ ELStakingPool }"
+      abi: StakingPool
+      startBlock: { StartBlock }
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assembly
+        - Connector
+      abis:
+        - name: StakingPool
+          file: ./abis/StakingPool.json
+      entities:
+        - StakingPool
+      eventHandlers:
+        - event: Stake(indexed address,uint256,uint256,uint256,uint8)
+          handler: handleStake
+        - event: Withdraw(indexed address,uint256,uint256,uint256,uint8)
+          handler: handleWithdraw
+        - event: Migrate(address,uint256,uint8,uint8)
+          handler: handleMigrate
+        - event: Claim(indexed address,uint256,uint256,uint8)
+          handler: handleClaim
+      file: ./src/mappings/StakingPoolMapping.ts
+  - kind: ethereum/contract
+    name: ELFIStakingPool
+    network: { Network }
+    source:
+      address: "{ ELFIStakingPool }"
+      abi: StakingPool
+      startBlock: { StartBlock }
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assembly
+        - Connector
+      abis:
+        - name: StakingPool
+          file: ./abis/StakingPool.json
+      entities:
+        - StakingPool
+      eventHandlers:
+        - event: Stake(indexed address,uint256,uint256,uint256,uint8)
+          handler: handleStake
+        - event: Withdraw(indexed address,uint256,uint256,uint256,uint8)
+          handler: handleWithdraw
+        - event: Migrate(address,uint256,uint8,uint8)
+          handler: handleMigrate
+        - event: Claim(indexed address,uint256,uint256,uint8)
+          handler: handleClaim
+      file: ./src/mappings/StakingPoolMapping.ts

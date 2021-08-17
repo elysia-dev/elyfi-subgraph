@@ -81,6 +81,11 @@ type User @entity {
   borrow: [Borrow!]! @derivedFrom(field: "borrower")
   managingBorrow: [Borrow!]! @derivedFrom(field: "collateralServiceProvider")
   repay: [Repay!]! @derivedFrom(field: "borrower")
+  stakingPoolStake: [StakingPoolStake!]! @derivedFrom(field: "user")
+  stakingPoolWithdraw: [StakingPoolWithdraw!]! @derivedFrom(field: "user")
+  stakingPoolMigrate: [StakingPoolMigrate!]! @derivedFrom(field: "user")
+  stakingPoolClaim: [StakingPoolClaim!]! @derivedFrom(field: "user")
+  staker: [StakingPoolStaker!]! @derivedFrom(field: "user")
   isCouncil: Boolean!
   isCollateralServiceProvider: Boolean!
 }
@@ -158,5 +163,58 @@ type LTokenBurn @entity {
   receiver: User!
   amount: BigInt!
   index: BigInt!
+  timestamp: Int!
+}
+
+type StakingPool @entity {
+  id: ID!
+  stake: [StakingPoolStake!]! @derivedFrom(field: "stakingPool")
+  withdraw: [StakingPoolWithdraw!]! @derivedFrom(field: "stakingPool")
+  migrate: [StakingPoolMigrate!]! @derivedFrom(field: "stakingPool")
+  claim: [StakingPoolClaim!]! @derivedFrom(field: "stakingPool")
+  staker: [StakingPoolStaker!]! @derivedFrom(field: "stakingPool")
+}
+
+type StakingPoolStaker @entity {
+  id: ID!
+  user: User!
+  stakingPool: StakingPool!
+  amount: BigInt!
+  round: Int!
+}
+
+type StakingPoolStake @entity {
+  id: ID!
+  user: User!
+  amount: BigInt!
+  stakingPool: StakingPool!
+  round: Int!
+  timestamp: Int!
+}
+
+type StakingPoolWithdraw @entity {
+  id: ID!
+  user: User!
+  stakingPool: StakingPool!
+  amount: BigInt!
+  round: Int!
+  timestamp: Int!
+}
+
+type StakingPoolMigrate @entity {
+  id: ID!
+  user: User!
+  stakingPool: StakingPool!
+  amount: BigInt!
+  round: Int!
+  timestamp: Int!
+}
+
+type StakingPoolClaim @entity {
+  id: ID!
+  user: User!
+  stakingPool: StakingPool!
+  round: Int!
+  amount: BigInt!
   timestamp: Int!
 }

@@ -1,5 +1,5 @@
 import { BigInt } from "@graphprotocol/graph-ts";
-import { User, DTokenUserBalance, LTokenUserBalance, Reserve, LToken, DToken } from "../../../generated/schema"
+import { User, DTokenUserBalance, LTokenUserBalance, Reserve, LToken, DToken, StakingPool } from "../../../generated/schema"
 
 export function findOrCreateUser(id: string): User {
   let user = User.load(id);
@@ -12,6 +12,17 @@ export function findOrCreateUser(id: string): User {
   }
 
   return user as User;
+}
+
+export function findOrCreateStakingPool(id: string): StakingPool {
+  let stakingPool = StakingPool.load(id);
+
+  if (!stakingPool) {
+    stakingPool = new StakingPool(id);
+    stakingPool.save();
+  }
+
+  return stakingPool as StakingPool;
 }
 
 export function findOrCreateDTokenUserBalance(
