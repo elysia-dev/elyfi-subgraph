@@ -37,83 +37,6 @@ dataSources:
           handler: handleRatesUpdated
       file: ./src/mappings/MoneyPoolMapping.ts
   - kind: ethereum/contract
-    name: DToken
-    network: { Network }
-    source:
-      address: "{ DToken }"
-      abi: DToken
-      startBlock: { StartBlock }
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - DToken
-      abis:
-        - name: DToken
-          file: ./abis/DToken.json
-      eventHandlers:
-        - event: Burn(indexed address,uint256,uint256,uint256,uint256,uint256)
-          handler: handleBurn
-        - event: Mint(indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,uint256)
-          handler: handleMint
-      file: ./src/mappings/DTokenMapping.ts
-  - kind: ethereum/contract
-    name: LToken
-    network: { Network }
-    source:
-      address: "{ LToken }"
-      abi: LToken
-      startBlock: { StartBlock }
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assemblyscript
-      entities:
-        - LToken
-      abis:
-        - name: LToken
-          file: ./abis/LToken.json
-      eventHandlers:
-        - event: Transfer(indexed address,indexed address,uint256)
-          handler: handleTransfer
-        - event: Burn(indexed address,indexed address,uint256,uint256)
-          handler: handleBurn
-        - event: Mint(indexed address,uint256,uint256)
-          handler: handleMint
-      file: ./src/mappings/LTokenMapping.ts
-  - kind: ethereum/contract
-    name: Tokenizer
-    network: { Network }
-    source:
-      address: "{ Tokenizer }"
-      abi: Tokenizer
-      startBlock: { StartBlock }
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.4
-      language: wasm/assembly
-        - Tokenizer
-      abis:
-        - name: Tokenizer
-          file: ./abis/Tokenizer.json
-      entities:
-        - AssetBondToken
-      eventHandlers:
-        - event: EmptyAssetBondMinted(indexed address,uint256)
-          handler: handleEmptyAssetBondMinted
-        - event: AssetBondCollateralized(indexed address,uint256,uint256,uint256)
-          handler: handleAssetBondCollateralized
-        - event: AssetBondLiquidated(indexed address,uint256)
-          handler: handleAssetBondLiquidated
-        - event: AssetBondReleased(indexed address,uint256)
-          handler: handleAssetBondReleased
-        - event: AssetBondSettled(indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,string)
-          handler: handleAssetBondSettled
-        - event: AssetBondSigned(indexed address,uint256,string)
-          handler: handleAssetBondSigned
-      file: ./src/mappings/TokenizerMapping.ts
-  - kind: ethereum/contract
     name: Connector
     network: { Network }
     source:
@@ -194,3 +117,75 @@ dataSources:
         - event: Claim(indexed address,uint256,uint256,uint8)
           handler: handleClaim
       file: ./src/mappings/StakingPoolMapping.ts
+templates:
+  - kind: ethereum/contract
+    name: LToken
+    network: { Network }
+    source:
+      abi: LToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - LToken
+      abis:
+        - name: LToken
+          file: ./abis/LToken.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,uint256)
+          handler: handleTransfer
+        - event: Burn(indexed address,indexed address,uint256,uint256)
+          handler: handleBurn
+        - event: Mint(indexed address,uint256,uint256)
+          handler: handleMint
+      file: ./src/mappings/LTokenMapping.ts
+  - kind: ethereum/contract
+    name: DToken
+    network: { Network }
+    source:
+      abi: DToken
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - DToken
+      abis:
+        - name: DToken
+          file: ./abis/DToken.json
+      eventHandlers:
+        - event: Burn(indexed address,uint256,uint256,uint256,uint256,uint256)
+          handler: handleBurn
+        - event: Mint(indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,uint256)
+          handler: handleMint
+      file: ./src/mappings/DTokenMapping.ts
+  - kind: ethereum/contract
+    name: Tokenizer
+    network: { Network }
+    source:
+      abi: Tokenizer
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assembly
+        - Tokenizer
+      abis:
+        - name: Tokenizer
+          file: ./abis/Tokenizer.json
+      entities:
+        - AssetBondToken
+      eventHandlers:
+        - event: EmptyAssetBondMinted(indexed address,uint256)
+          handler: handleEmptyAssetBondMinted
+        - event: AssetBondCollateralized(indexed address,uint256,uint256,uint256)
+          handler: handleAssetBondCollateralized
+        - event: AssetBondLiquidated(indexed address,uint256)
+          handler: handleAssetBondLiquidated
+        - event: AssetBondReleased(indexed address,uint256)
+          handler: handleAssetBondReleased
+        - event: AssetBondSettled(indexed address,indexed address,uint256,uint256,uint256,uint256,uint256,uint256,uint256,uint256,string)
+          handler: handleAssetBondSettled
+        - event: AssetBondSigned(indexed address,uint256,string)
+          handler: handleAssetBondSigned
+      file: ./src/mappings/TokenizerMapping.ts

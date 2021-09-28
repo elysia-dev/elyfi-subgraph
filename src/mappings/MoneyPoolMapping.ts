@@ -43,6 +43,10 @@ export function handleNewReserve(event: NewReserve): void {
   let dToken = new DToken(event.params.dToken.toHex());
   dToken.reserve = reserve.id;
   dToken.save();
+
+  let tokenizer = new AssetBondToken(event.params.tokenizer.toHex());
+  tokenizer.reserve = reserve.id;
+  tokenizer.save();
 }
 
 export function handleDeposit(event: DepositEvent): void {

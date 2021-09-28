@@ -107,6 +107,7 @@ type AssetBondToken @entity {
   liquidationTimestamp: Int
   ipfsHash: String
   signerOpinionHash: String
+  reserve: Reserve!
 }
 
 type Deposit @entity {
