@@ -22,8 +22,8 @@ For test transaction data,
 
 ## Create reserve on local
 - `docker-compose up -d`
-- `yarn deploy:core --network ganache`
-- `yarn deploy:reserve --network ganache --tags dai_reserve`
+- `yarn deploy:core --network ganache` on elyfi project
+- `yarn deploy:reserve --network ganache --tags dai_reserve` on elyfi project
 - `yarn prepare:local` : Generate subgraph.yaml
 - `yarn codegen`
 - `yarn create:local`
