@@ -18,3 +18,13 @@ For test transaction data,
 
 - `yarn task createDeposit --network ganache`
 - `yarn task createWithdraw --newtork ganache`
+
+
+## Create reserve on local
+- `docker-compose up -d`
+- `yarn deploy:core --network ganache`
+- `yarn deploy:reserve --network ganache --tags dai_reserve`
+- `yarn prepare:local` : Generate subgraph.yaml
+- `yarn codegen`
+- `yarn create:local`
+- `yarn deploy:local`
