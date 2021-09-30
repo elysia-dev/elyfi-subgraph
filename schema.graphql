@@ -223,21 +223,4 @@ type StakingPoolClaim @entity {
 type IncentivePool @entity {
   id: ID!
   reserve: Reserve!
-  user: User!
-}
-
-type IncentivePoolClaimIncentive @entity {
-  id: ID!
-  user: User!
-  claimedIncentive: BigInt!
-  userIncentiveIndex: BigInt!
-  incentivePool: IncentivePool!
-}
-
-type IncentivePoolUpdateIncentivePool @entity {
-  id: ID!
-  user: User!
-  accruedIncentive: BigInt!
-  incentiveIndex: BigInt!
-  incentivePool: IncentivePool!
 }

@@ -1,4 +1,4 @@
-import { BigInt } from '@graphprotocol/graph-ts';
+import { BigInt, log } from '@graphprotocol/graph-ts';
 import {
   NewReserve,
   Deposit as DepositEvent,
@@ -16,7 +16,8 @@ import {
   Repay,
   LToken,
   DToken,
-  ReserveHistory
+  ReserveHistory,
+  IncentivePool,
 } from '../../generated/schema';
 import {
   findOrCreateUser
@@ -47,6 +48,10 @@ export function handleNewReserve(event: NewReserve): void {
   let tokenizer = new AssetBondToken(event.params.tokenizer.toHex());
   tokenizer.reserve = reserve.id;
   tokenizer.save();
+
+  let incentivePool = new IncentivePool(event.params.incentivePool.toHex());
+  incentivePool.reserve = reserve.id;
+  incentivePool.save();
 }
 
 export function handleDeposit(event: DepositEvent): void {
