@@ -1,12 +1,12 @@
 import {
-  Transfer as TransferEvent,
-  Mint as MintEvent,
-  Burn as BurnEvent,
-} from '../../generated/LToken/LToken';
-import {
   LTokenBurn,
   LTokenMint
 } from '../../generated/schema';
+import { 
+  Transfer as TransferEvent,
+  Mint as MintEvent,
+  Burn as BurnEvent,
+ } from '../../generated/templates/LToken/LToken';
 import {
   findOrCreateLTokenUserBalance,
 } from './utils/initializers';

@@ -191,7 +191,7 @@ templates:
       file: ./src/mappings/TokenizerMapping.ts
   - kind: ethereum/contract
     name: IncentivePool
-    network: mainnet
+    network: { Network }
     source:
       abi: IncentivePool
     mapping:

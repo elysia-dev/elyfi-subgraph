@@ -1,7 +1,7 @@
-import {
+import { 
   Mint as MintEvent,
-  Burn as BurnEvent,
-} from '../../generated/DToken/DToken';
+  Burn as BurnEvent, 
+} from '../../generated/templates/DToken/DToken';
 import {
   findOrCreateDTokenUserBalance,
 } from './utils/initializers';

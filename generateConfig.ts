@@ -17,7 +17,7 @@ const main = async () => {
   let templateData = await fs.promises.readFile('./subgraph.template.yaml', 'utf8');
 
   await Promise.all([
-    'MoneyPool', 'LToken', 'DToken', 'Tokenizer', 'Connector'
+    'MoneyPool', 'LToken', 'DToken', 'Tokenizer', 'Connector', 'Tokenizer'
   ].map(async (key) => {
     const file = await fs.promises.readFile(`./lib/elyfi/deployments/${network}/${key}.json`, 'utf8')
     const data = JSON.parse(file) as DeployedContract;

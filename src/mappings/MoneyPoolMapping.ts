@@ -37,18 +37,22 @@ export function handleNewReserve(event: NewReserve): void {
   reserve.lTokenUserBalanceCount = 0;
   reserve.save();
 
+  log.info('handleNewReserve lToken : {}', [event.params.lToken.toHex()])
   let lToken = new LToken(event.params.lToken.toHex());
   lToken.reserve = reserve.id;
   lToken.save();
 
+  log.info('handleNewReserve dToken : {}', [event.params.dToken.toHex()])
   let dToken = new DToken(event.params.dToken.toHex());
   dToken.reserve = reserve.id;
   dToken.save();
 
+  log.info('handleNewReserve tokenizer : {}', [event.params.tokenizer.toHex()])
   let tokenizer = new AssetBondToken(event.params.tokenizer.toHex());
   tokenizer.reserve = reserve.id;
   tokenizer.save();
 
+  log.info('handleNewReserve incentivePool : {}', [event.params.incentivePool.toHex()])
   let incentivePool = new IncentivePool(event.params.incentivePool.toHex());
   incentivePool.reserve = reserve.id;
   incentivePool.save();
