@@ -107,6 +107,7 @@ type AssetBondToken @entity {
   liquidationTimestamp: Int
   ipfsHash: String
   signerOpinionHash: String
+  reserve: Reserve!
 }
 
 type Deposit @entity {
@@ -217,4 +218,9 @@ type StakingPoolClaim @entity {
   round: Int!
   amount: BigInt!
   timestamp: Int!
+}
+
+type IncentivePool @entity {
+  id: ID!
+  reserve: Reserve!
 }

@@ -18,3 +18,14 @@ For test transaction data,
 
 - `yarn task createDeposit --network ganache`
 - `yarn task createWithdraw --newtork ganache`
+
+
+## Create reserve on local
+> `HTTP error creating the subgraph: ECONNREFUSED` raised then remove data dictory
+- `docker-compose up -d`
+- `yarn deploy:core --network ganache` on `lib/elyfi` project
+- `yarn deploy:reserve --network ganache --tags dai_reserve` on `lib/elyfi` project
+- `yarn prepare:local` : Generate subgraph.yaml
+- `yarn codegen`
+- `yarn create:local`
+- `yarn deploy:local`

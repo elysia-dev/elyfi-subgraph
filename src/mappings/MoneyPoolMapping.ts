@@ -16,11 +16,19 @@ import {
   Repay,
   LToken,
   DToken,
-  ReserveHistory
+  ReserveHistory,
+  IncentivePool,
 } from '../../generated/schema';
 import {
   findOrCreateUser
 } from './utils/initializers';
+import { 
+  LToken as LTokenTemplate,
+  DToken as DTokenTemplate,
+  Tokenizer as TokenizerTemplate,
+  IncentivePool as IncentivePoolTemplate,
+} from '../../generated/templates';
+
 
 export function handleNewReserve(event: NewReserve): void {
   let reserve = new Reserve(event.params.asset.toHex());
@@ -36,13 +44,25 @@ export function handleNewReserve(event: NewReserve): void {
   reserve.lTokenUserBalanceCount = 0;
   reserve.save();
 
+  LTokenTemplate.create(event.params.lToken);
   let lToken = new LToken(event.params.lToken.toHex());
   lToken.reserve = reserve.id;
   lToken.save();
 
+  DTokenTemplate.create(event.params.dToken);
   let dToken = new DToken(event.params.dToken.toHex());
   dToken.reserve = reserve.id;
   dToken.save();
+
+  TokenizerTemplate.create(event.params.tokenizer);
+  let tokenizer = new AssetBondToken(event.params.tokenizer.toHex());
+  tokenizer.reserve = reserve.id;
+  tokenizer.save();
+
+  IncentivePoolTemplate.create(event.params.incentivePool);
+  let incentivePool = new IncentivePool(event.params.incentivePool.toHex());
+  incentivePool.reserve = reserve.id;
+  incentivePool.save();
 }
 
 export function handleDeposit(event: DepositEvent): void {

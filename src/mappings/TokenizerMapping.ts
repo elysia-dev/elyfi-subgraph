@@ -1,11 +1,11 @@
-import {
+import { 
   EmptyAssetBondMinted,
   AssetBondCollateralized,
   AssetBondLiquidated,
   AssetBondReleased,
   AssetBondSettled,
   AssetBondSigned
-} from '../../generated/Tokenizer/Tokenizer'
+ } from '../../generated/templates/Tokenizer/Tokenizer'
 import {
   AssetBondToken
 } from '../../generated/schema';
