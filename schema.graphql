@@ -13,6 +13,7 @@ type Reserve @entity {
   dToken: DToken! @derivedFrom(field: "reserve")
   lTokenUserBalance: LTokenUserBalance! @derivedFrom(field: "reserve")
   dTokenUserBalance: DTokenUserBalance! @derivedFrom(field: "reserve")
+  incentivePool: IncentivePool! @derivedFrom(field: "reserve")
   depositAPY: BigInt!
   borrowAPY: BigInt!
   totalBorrow: BigInt!
