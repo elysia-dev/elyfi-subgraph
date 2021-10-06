@@ -22,11 +22,10 @@ import {
 import {
   findOrCreateUser
 } from './utils/initializers';
-import { 
+import {
   LToken as LTokenTemplate,
   DToken as DTokenTemplate,
   Tokenizer as TokenizerTemplate,
-  IncentivePool as IncentivePoolTemplate,
 } from '../../generated/templates';
 
 
@@ -59,7 +58,6 @@ export function handleNewReserve(event: NewReserve): void {
   tokenizer.reserve = reserve.id;
   tokenizer.save();
 
-  IncentivePoolTemplate.create(event.params.incentivePool);
   let incentivePool = new IncentivePool(event.params.incentivePool.toHex());
   incentivePool.reserve = reserve.id;
   incentivePool.save();
