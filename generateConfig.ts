@@ -7,7 +7,7 @@ interface DeployedContract {
 const network = process.env.NETWORK || 'mainnet'
 const kovanStartBlock = '25834770'
 const ethStartBlock = '12830628	'
-const ropstenStartBlock = '10554048'
+const ropstenStartBlock = '11175520'
 
 // mainnet staking pool
 const elStakingPool = '0xd804e198d25a1920522ca0094a670184a9c972d7'
@@ -18,7 +18,7 @@ const main = async () => {
   let templateData = await fs.promises.readFile('./subgraph.template.yaml', 'utf8');
 
   await Promise.all([
-    'MoneyPool', 'LToken', 'DToken', 'Tokenizer', 'Connector'
+    'MoneyPool', 'Connector'
   ].map(async (key) => {
     const file = await fs.promises.readFile(`./lib/elyfi/deployments/${network}/${key}.json`, 'utf8')
     const data = JSON.parse(file) as DeployedContract;
