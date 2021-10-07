@@ -18,6 +18,7 @@ import {
   DToken,
   ReserveHistory,
   IncentivePool,
+  Tokenizer
 } from '../../generated/schema';
 import {
   findOrCreateUser
@@ -54,7 +55,7 @@ export function handleNewReserve(event: NewReserve): void {
   dToken.save();
 
   TokenizerTemplate.create(event.params.tokenizer);
-  let tokenizer = new AssetBondToken(event.params.tokenizer.toHex());
+  let tokenizer = new Tokenizer(event.params.tokenizer.toHex());
   tokenizer.reserve = reserve.id;
   tokenizer.save();
 

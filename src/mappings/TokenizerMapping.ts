@@ -1,13 +1,14 @@
-import { 
+import {
   EmptyAssetBondMinted,
   AssetBondCollateralized,
   AssetBondLiquidated,
   AssetBondReleased,
   AssetBondSettled,
-  AssetBondSigned
- } from '../../generated/templates/Tokenizer/Tokenizer'
+  AssetBondSigned,
+} from '../../generated/templates/Tokenizer/Tokenizer'
 import {
-  AssetBondToken
+  AssetBondToken,
+  Tokenizer
 } from '../../generated/schema';
 import {
   findOrCreateUser
@@ -26,9 +27,11 @@ enum AssetBondTokenState {
 export function handleEmptyAssetBondMinted(event: EmptyAssetBondMinted): void {
   let assetBondToken = new AssetBondToken(event.params.tokenId.toString())
   let collateralServiceProvider = findOrCreateUser(event.params.account.toHex());
+  let tokenizer = Tokenizer.load(event.transaction.to.toHex());
 
   assetBondToken.collateralServiceProvider = collateralServiceProvider.id;
   assetBondToken.state = AssetBondTokenState.EMPTY;
+  assetBondToken.reserve = tokenizer.reserve;
 
   assetBondToken.save();
 }

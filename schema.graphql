@@ -225,3 +225,8 @@ type IncentivePool @entity {
   id: ID!
   reserve: Reserve!
 }
+
+type Tokenizer @entity {
+  id: ID!
+  reserve: Reserve!
+}
