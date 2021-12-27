@@ -15,7 +15,12 @@
     "deploy": "graph deploy elysia-dev/elyfi-subgraph --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
     "deploy:ropsten": "graph deploy modonguk/elyfi --ipfs https://api.thegraph.com/ipfs/ --node https://api.thegraph.com/deploy/",
     "deploy:local": "graph deploy elysia-dev/elyfi-subgraph --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
-    "task": "cd lib/elyfi && yarn task"
+    "task": "cd lib/elyfi && yarn task",
+    "setup:mainnet": "graph codegen -- subgraph-mainnet.yaml && graph codegen -- subgraph-mainnet.yaml",
+    "deploy:ganache": "graph deploy -- subgraph-mainnet.yaml elysia-dev/elyfi-subgraph --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
+    "codegen:chapel": "graph codegen -- subgraph-chapel.yaml",
+    "build:chapel": "graph build -- subgraph-chapel.yaml",
+    "deploy:chapel": "graph deploy --product hosted-service donguks/elyfi-bsc-subgraph"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.20.0",
