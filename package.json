@@ -20,7 +20,8 @@
     "deploy:ganache": "graph deploy -- subgraph-mainnet.yaml elysia-dev/elyfi-subgraph --ipfs http://localhost:5001 --node http://127.0.0.1:8020",
     "codegen:chapel": "graph codegen -- subgraph-chapel.yaml",
     "build:chapel": "graph build -- subgraph-chapel.yaml",
-    "deploy:chapel": "graph deploy --product hosted-service donguks/elyfi-bsc-subgraph"
+    "deploy:chapel": "graph deploy --product hosted-service donguks/elyfi-bsc-subgraph",
+    "deploy:bsc": "graph deploy --product hosted-service donguks/elyfi-bsc"
   },
   "devDependencies": {
     "@graphprotocol/graph-cli": "^0.20.0",

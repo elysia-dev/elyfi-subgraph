@@ -6,11 +6,11 @@ schema:
 dataSources:
   - kind: ethereum/contract
     name: MoneyPool
-    network: chapel
+    network: bsc
     source:
-      address: "0xBdbCC95abF4172a54e24Dc9A9e5E7f966cB6C9fC"
+      address: "0x0bdFef5f8B75741d33a22d85022244CBE793DA24"
       abi: MoneyPool
-      startBlock: 15992267
+      startBlock: 14521955
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -38,11 +38,11 @@ dataSources:
       file: ./src/mappings/MoneyPoolMapping.ts
   - kind: ethereum/contract
     name: Connector
-    network: chapel
+    network: bsc
     source:
-      address: "0xb223Fa34F97f44A50Afd21edba1eB3F54fae1484"
+      address: "0x424C2A31976C2d609819582c84F534b15b001793"
       abi: Connector
-      startBlock: 15992267
+      startBlock: 14521955
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.4
@@ -66,7 +66,7 @@ dataSources:
 templates:
   - kind: ethereum/contract
     name: LToken
-    network: chapel
+    network: bsc
     source:
       abi: LToken
     mapping:
@@ -88,7 +88,7 @@ templates:
       file: ./src/mappings/LTokenMapping.ts
   - kind: ethereum/contract
     name: DToken
-    network: chapel
+    network: bsc
     source:
       abi: DToken
     mapping:
@@ -108,7 +108,7 @@ templates:
       file: ./src/mappings/DTokenMapping.ts
   - kind: ethereum/contract
     name: Tokenizer
-    network: chapel
+    network: bsc
     source:
       abi: Tokenizer
     mapping:
