@@ -2,7 +2,7 @@
   "name": "elyfi-subgraph",
   "version": "0.1.0",
   "scripts": {
-    "deploy-contracts:local": "cd lib/elyfi && yarn && yarn hardhat compile && yarn deploy:local",
+    "deploy-contracts:local": "cd lib/elyfi && yarn && hardhat compile && yarn deploy:local",
     "deploy-contracts:ropsten": "cd lib/elyfi && yarn && yarn hardhat compile && yarn deploy:testnet",
     "prepare:local": "NETWORK=ganache ts-node ./generateConfig.ts",
     "prepare:ropsten": "NETWORK=ropsten ts-node ./generateConfig.ts",
