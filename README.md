@@ -1,6 +1,11 @@
 # elyfi-subgraph
 
-The code of Elyfi subgraph
+The code of Elyfi subgraph. You can test mainnet subgraph [here](https://thegraph.com/explorer/subgraph?id=0x9d2d46e67c420147834c76b23c9bac485f114feb-0)
+
+##
+```sh
+yarn global add @graphprotocol/graph-cli
+```
 
 ## Local Setup
 
