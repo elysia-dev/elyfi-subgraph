@@ -34,3 +34,9 @@ For test transaction data,
 - `yarn codegen`
 - `yarn create:local`
 - `yarn deploy:local`
+
+## How to deploy (production)
+
+1. `graph auth --studio ACCESS_KEY`. You can find the ACCESS_KEY in https://thegraph.com/studio/subgraph/elyfi/
+2. `graph codegen && graph build`
+3. `graph deploy --studio elyfi` with new version
