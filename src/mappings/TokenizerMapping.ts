@@ -25,9 +25,11 @@ enum AssetBondTokenState {
 }
 
 export function handleEmptyAssetBondMinted(event: EmptyAssetBondMinted): void {
-  let assetBondToken = new AssetBondToken(event.params.tokenId.toString())
-  let collateralServiceProvider = findOrCreateUser(event.params.account.toHex());
-  let tokenizer = Tokenizer.load(event.transaction.to.toHex());
+  let assetBondToken = new AssetBondToken(event.params.tokenId.toString());
+  let collateralServiceProvider = findOrCreateUser(
+    event.params.account.toHex()
+  );
+  let tokenizer = Tokenizer.load(event.address.toHex());
 
   assetBondToken.collateralServiceProvider = collateralServiceProvider.id;
   assetBondToken.state = AssetBondTokenState.EMPTY;
