@@ -3,6 +3,7 @@
 The code of Elyfi subgraph. You can test mainnet subgraph [here](https://thegraph.com/explorer/subgraph?id=0x9d2d46e67c420147834c76b23c9bac485f114feb-0)
 
 ##
+
 ```sh
 yarn global add @graphprotocol/graph-cli
 ```
@@ -24,9 +25,10 @@ For test transaction data,
 - `yarn task createDeposit --network ganache`
 - `yarn task createWithdraw --newtork ganache`
 
-
 ## Create reserve on local
+
 > `HTTP error creating the subgraph: ECONNREFUSED` raised then remove data dictory
+
 - `docker-compose up -d`
 - `yarn deploy:core --network ganache` on `lib/elyfi` project
 - `yarn deploy:reserve --network ganache --tags dai_reserve` on `lib/elyfi` project
@@ -38,5 +40,7 @@ For test transaction data,
 ## How to deploy (production)
 
 1. `graph auth --studio ACCESS_KEY`. You can find the ACCESS_KEY in https://thegraph.com/studio/subgraph/elyfi/
-2. `graph codegen && graph build`
+2. `graph codegen <MANIFEST_FILE> && graph build`. For example, <MANIFEST_FILE> is `subgraph-mainnet.yaml` in mainnet, the default is `subgraph.yaml`.
 3. `graph deploy --studio elyfi` with new version
+
+See https://thegraph.academy/developers/subgraph-development-guide/ for details.
