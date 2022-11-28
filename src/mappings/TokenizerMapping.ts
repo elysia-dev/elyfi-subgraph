@@ -29,7 +29,7 @@ export function handleEmptyAssetBondMinted(event: EmptyAssetBondMinted): void {
   let collateralServiceProvider = findOrCreateUser(
     event.params.account.toHex()
   );
-  let tokenizer = Tokenizer.load(event.address.toHex());
+  let tokenizer = Tokenizer.load(event.address.toHex())!;
 
   assetBondToken.collateralServiceProvider = collateralServiceProvider.id;
   assetBondToken.state = AssetBondTokenState.EMPTY;
@@ -39,7 +39,7 @@ export function handleEmptyAssetBondMinted(event: EmptyAssetBondMinted): void {
 }
 
 export function handleAssetBondCollateralized(event: AssetBondCollateralized): void {
-  let assetBondToken = AssetBondToken.load(event.params.tokenId.toString())
+  let assetBondToken = AssetBondToken.load(event.params.tokenId.toString())!
 
   assetBondToken.state = AssetBondTokenState.COLLATERALIZED;
   assetBondToken.interestRate = event.params.interestRate;
@@ -49,21 +49,21 @@ export function handleAssetBondCollateralized(event: AssetBondCollateralized): v
 }
 
 export function handleAssetBondLiquidated(event: AssetBondLiquidated): void {
-  let assetBondToken = AssetBondToken.load(event.params.tokenId.toString())
+  let assetBondToken = AssetBondToken.load(event.params.tokenId.toString())!
   assetBondToken.state = AssetBondTokenState.LIQUIDATED;
 
   assetBondToken.save();
 }
 
 export function handleAssetBondReleased(event: AssetBondReleased): void {
-  let assetBondToken = AssetBondToken.load(event.params.tokenId.toString())
+  let assetBondToken = AssetBondToken.load(event.params.tokenId.toString())!
   assetBondToken.state = AssetBondTokenState.REDEEMED;
 
   assetBondToken.save();
 }
 
 export function handleAssetBondSettled(event: AssetBondSettled): void {
-  let assetBondToken = AssetBondToken.load(event.params.tokenId.toString())
+  let assetBondToken = AssetBondToken.load(event.params.tokenId.toString())!
   let borrower = findOrCreateUser(event.params.borrower.toHex());
   let signer = findOrCreateUser(event.params.signer.toHex());
 
@@ -83,7 +83,7 @@ export function handleAssetBondSettled(event: AssetBondSettled): void {
 }
 
 export function handleAssetBondSigned(event: AssetBondSigned): void {
-  let assetBondToken = AssetBondToken.load(event.params.tokenId.toString())
+  let assetBondToken = AssetBondToken.load(event.params.tokenId.toString())!
 
   assetBondToken.state = AssetBondTokenState.CONFIRMED;
   assetBondToken.signerOpinionHash = event.params.signerOpinionHash;

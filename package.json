@@ -1,6 +1,6 @@
 {
   "name": "elyfi-subgraph",
-  "version": "0.1.0",
+  "version": "0.0.5",
   "scripts": {
     "deploy-contracts:local": "cd lib/elyfi && yarn && hardhat compile && yarn deploy:local",
     "deploy-contracts:ropsten": "cd lib/elyfi && yarn && yarn hardhat compile && yarn deploy:testnet",
@@ -24,8 +24,8 @@
     "deploy:bsc": "graph deploy --product hosted-service donguks/elyfi-bsc"
   },
   "devDependencies": {
-    "@graphprotocol/graph-cli": "^0.20.0",
-    "@graphprotocol/graph-ts": "^0.20.0",
+    "@graphprotocol/graph-cli": "^0.36.0",
+    "@graphprotocol/graph-ts": "^0.29.0",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.4"
   },

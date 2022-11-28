@@ -13,7 +13,7 @@ dataSources:
       startBlock: 12830628
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - Reserve
@@ -45,7 +45,7 @@ dataSources:
       startBlock: 12830628
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assembly
         - Connector
       abis:
@@ -72,7 +72,7 @@ dataSources:
       startBlock: 12830628
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assembly
         - Connector
       abis:
@@ -99,7 +99,7 @@ dataSources:
       startBlock: 12830628
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assembly
         - Connector
       abis:
@@ -126,7 +126,7 @@ dataSources:
       startBlock: 12830628
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assembly
         - Connector
       abis:
@@ -152,7 +152,7 @@ templates:
       abi: LToken
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - LToken
@@ -174,7 +174,7 @@ templates:
       abi: DToken
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assemblyscript
       entities:
         - DToken
@@ -194,7 +194,7 @@ templates:
       abi: Tokenizer
     mapping:
       kind: ethereum/events
-      apiVersion: 0.0.4
+      apiVersion: 0.0.6
       language: wasm/assembly
         - Tokenizer
       abis:

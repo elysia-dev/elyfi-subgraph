@@ -31,8 +31,9 @@ export function findOrCreateDTokenUserBalance(
   timestamp: BigInt
 ): DTokenUserBalance {
   let dTokenUserBalance = DTokenUserBalance.load(user + dTokenAddress);
-  let dToken = DToken.load(dTokenAddress);
-  let reserve = Reserve.load(dToken.reserve);
+  let dToken = DToken.load(dTokenAddress)!;
+
+  let reserve = Reserve.load(dToken.reserve)!;
 
   if (!dTokenUserBalance) {
     reserve.dTokenUserBalanceCount = reserve.dTokenUserBalanceCount + 1;
@@ -58,8 +59,8 @@ export function findOrCreateLTokenUserBalance(
   timestamp: BigInt
 ): LTokenUserBalance {
   let lTokenUserBalance = LTokenUserBalance.load(user + lTokenAddrees);
-  let lToken = LToken.load(lTokenAddrees);
-  let reserve = Reserve.load(lToken.reserve);
+  let lToken = LToken.load(lTokenAddrees)!;
+  let reserve = Reserve.load(lToken.reserve)!;
 
   if (!lTokenUserBalance) {
     reserve.lTokenUserBalanceCount = reserve.lTokenUserBalanceCount + 1;

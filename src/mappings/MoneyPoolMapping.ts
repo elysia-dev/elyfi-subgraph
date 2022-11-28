@@ -67,7 +67,7 @@ export function handleNewReserve(event: NewReserve): void {
 export function handleDeposit(event: DepositEvent): void {
   let user = findOrCreateUser(event.params.account.toHex());
   let deposit = new Deposit(event.transaction.hash.toHex());
-  let reserve = Reserve.load(event.params.asset.toHex());
+  let reserve = Reserve.load(event.params.asset.toHex())!;
 
   deposit.account = user.id;
   deposit.reserve = reserve.id;
@@ -80,7 +80,7 @@ export function handleDeposit(event: DepositEvent): void {
 export function handleWithdraw(event: WithdrawEvent): void {
   let user = findOrCreateUser(event.params.account.toHex());
   let withdraw = new Withdraw(event.transaction.hash.toHex());
-  let reserve = Reserve.load(event.params.asset.toHex());
+  let reserve = Reserve.load(event.params.asset.toHex())!;
 
   withdraw.account = user.id;
   withdraw.reserve = reserve.id;
@@ -94,9 +94,9 @@ export function handleWithdraw(event: WithdrawEvent): void {
 export function handleBorrow(event: BorrowEvent): void {
   let borrower = findOrCreateUser(event.params.borrower.toHex());
   let collateralServiceProvider = findOrCreateUser(event.params.collateralServiceProvider.toHex());
-  let reserve = Reserve.load(event.params.asset.toHex());
+  let reserve = Reserve.load(event.params.asset.toHex())!;
   let borrow = new Borrow(event.transaction.hash.toHex());
-  let token = AssetBondToken.load(event.params.tokenId.toString());
+  let token = AssetBondToken.load(event.params.tokenId.toString())!;
 
   borrow.borrower = borrower.id;
   borrow.collateralServiceProvider = collateralServiceProvider.id;
@@ -111,9 +111,9 @@ export function handleBorrow(event: BorrowEvent): void {
 
 export function handleRepay(event: RepayEvent): void {
   let borrower = findOrCreateUser(event.params.borrower.toHex());
-  let reserve = Reserve.load(event.params.asset.toHex());
+  let reserve = Reserve.load(event.params.asset.toHex())!;
   let repay = new Repay(event.transaction.hash.toHex());
-  let token = AssetBondToken.load(event.params.tokenId.toString());
+  let token = AssetBondToken.load(event.params.tokenId.toString())!;
 
   repay.borrower = borrower.id;
   repay.userDTokenBalance = event.params.userDTokenBalance;
@@ -127,7 +127,7 @@ export function handleRepay(event: RepayEvent): void {
 
 export function handleRatesUpdated(event: RatespdatedEvent): void {
   let reserveHistory = new ReserveHistory(event.transaction.hash.toHex());
-  let reserve = Reserve.load(event.params.underlyingAssetAddress.toHex());
+  let reserve = Reserve.load(event.params.underlyingAssetAddress.toHex())!;
 
   reserve.lTokenInterestIndex = event.params.lTokenIndex;
   reserve.lastUpdateTimestamp = event.block.timestamp.toI32();
